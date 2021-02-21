@@ -1,0 +1,98 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='styles/styles.css') }}"
+/>
+
+<div class="container">
+  <div class="tile is-ancestor">
+    <div class="tile is-12 is-parent is-vertical">
+      <div class="tile is-child box">
+        <p class="cursive text main-text pb-20">Countdown</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tile is-ancestor">
+    <div class="tile is-12 is-parent is-vertical">
+      <div class="tile is-child box pb-0">
+        <p class="c-number text" id="days"></p>
+        <p class="cursive text" id="days-text">days</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tile is-ancestor">
+    <div class="tile is-4 is-parent pt-0">
+      <div class="tile is-child box pt-0">
+        <p class="c-number text" id="hours"></p>
+        <p class="cursive text">hours</p>
+      </div>
+    </div>
+
+    <div class="tile is-4 is-parent pt-0">
+      <div class="tile is-child box pt-0">
+        <p class="c-number text" id="minutes"></p>
+        <p class="cursive text">minutes</p>
+      </div>
+    </div>
+
+    <div class="tile is-4 is-parent pt-0">
+      <div class="tile is-child box pt-0 seconds">
+        <p class="c-number text" id="seconds"></p>
+        <p class="cursive text">seconds</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tile is-ancestor">
+    <div class="tile is-12 is-parent is-vertical">
+      <div class="tile is-child box">
+        <p class="cursive text main-text">to John & Jane's wedding</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var countDownDate = new Date("May 20, 2021 00:00:00").getTime();
+  var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("days").innerHTML = "EXPIRED";
+    }
+  }, 1000);
+
+  //   window.onload = function() {
+  //     var minute = 5;
+  //     var sec = 60;
+  //     setInterval(function() {
+  //       document.getElementById("timer").innerHTML = minute + " : " + sec;
+  //       sec--;
+  //       if (sec == 00) {
+  //         minute--;
+  //         sec = 60;
+  //         if (minute == 0) {
+  //           minute = 5;
+  //         }
+  //       }
+  //     }, 1000);
+  //   };
+</script>
